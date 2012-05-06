@@ -82,9 +82,11 @@
     <ClCompile Include="guicon.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +99,7 @@
     <ClInclude Include="Renderer.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="WindowManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

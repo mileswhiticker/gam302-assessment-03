@@ -18,7 +18,7 @@ class Anim;
 class Scene
 {
 public:
-	Scene();
+	Scene(std::string a_BGPath = "media/starry[1280x853].bmp");
 	~Scene();
 	virtual void Update(float a_dt);
 	//
@@ -26,17 +26,20 @@ public:
 	void AddMiscSprite( _In_ sf::Sprite* a_pSprite );
 	void AddMiscAnim( _In_ Anim* a_pAnim );
 	//
-	void SetBackgroundImage( _In_ sf::Sprite* pBGImage );
+	void SetBackground( _In_ sf::Sprite* a_pBGImage );
+	sf::Sprite* GetBackground();
+	std::string GetBGPath();
 	std::vector<Button*> GetButtons();
 	virtual void ShowScene();
 	virtual void HideScene();
 	//
-	virtual void ProcKeyEvent(sf::Event::KeyEvent KeyEvent) = 0;
+	virtual void ProcKeyEvent(sf::Event::KeyEvent KeyEvent);
 	//
-	Scene* pNextScene;
-	Scene* pPreviousScene;
+	Scene* m_pNextScene;
+	Scene* m_pPreviousScene;
 protected:
-	sf::Sprite* pBackgroundImage;
+	sf::Sprite* m_pBackgroundImage;
+	std::string m_BGPath;
 	std::vector<sf::Sprite*> m_pMiscSprites;
 	std::vector<Anim*> m_pMiscAnims;
 	//

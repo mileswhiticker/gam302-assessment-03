@@ -4,6 +4,7 @@
 class Renderer;
 class WindowManager;
 class ResourceManager;
+class SceneManager;
 
 class App
 {
@@ -19,7 +20,8 @@ private:
 	//
 	Renderer& m_Renderer;
 	WindowManager& m_WindowMgr;
-	ResourceManager* m_pResourceManager;
+	ResourceManager* m_pResourceMgr;
+	SceneManager* m_pSceneMgr;
 	bool m_IsQuittingNextUpdate;
 };
 

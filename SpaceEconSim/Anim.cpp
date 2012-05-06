@@ -6,6 +6,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
+/*
 Anim::Anim( std::vector<sf::Sprite*> a_Frames, float a_TimePerFrame )
 :	Frames(a_Frames)
 ,	TimePerFrame(a_TimePerFrame)
@@ -16,7 +17,7 @@ Anim::Anim( std::vector<sf::Sprite*> a_Frames, float a_TimePerFrame )
 ,	Flipped(false)
 {
 	//grab the dimensions of the first frame
-	FramePosition = Frames.front()->GetPosition();
+	FramePosition = Frames.front()->getPosition();
 	FrameCentre = Frames.front()->GetCenter();
 	FrameSize = Frames.front()->GetSize();
 
@@ -115,8 +116,9 @@ void Anim::SetPosition(float x, float y)
 
 sf::Vector2f Anim::GetPosition()
 {
-	return Frames[0]->GetPosition();
+	return Frames[0]->getPosition();
 }
+*/
 
 //centrepoint mutators
 /*void Anim::SetCenter(sf::Vector2f a_Pos)
@@ -139,13 +141,14 @@ sf::Vector2f Anim::GetPosition()
 }*/
 
 //scale mutators
+/*
 void Anim::SetScale(sf::Vector2f a_Pos)
 {
 	for(unsigned short n=0;n<Frames.size();n++)
 	{
-		Frames[n]->SetScale(a_Pos);
+		Frames[n]->setScale(a_Pos);
 	}
-	FrameSize = Frames[0]->GetSize();
+	FrameSize = Frames[0]->getSize();
 }
 void Anim::SetScale(float x, float y)
 {
@@ -154,13 +157,13 @@ void Anim::SetScale(float x, float y)
 
 sf::Vector2f Anim::GetScale()
 {
-	return Frames[0]->GetScale();
+	return Frames[0]->getScale();
 }
 
 //size accessor
 sf::Vector2f Anim::GetSize()
 {
-	return Frames[0]->GetSize();
+	return Frames[0]->getSize();
 }
 
 Anim::~Anim()
@@ -171,3 +174,4 @@ Anim::~Anim()
 		Frames.pop_back();
 	}
 }
+*/

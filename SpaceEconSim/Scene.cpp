@@ -8,10 +8,11 @@
 
 #include <iostream>
 
-Scene::Scene()
-:	pNextScene(NULL)
-,	pPreviousScene(NULL)
-,	pBackgroundImage(NULL)
+Scene::Scene(std::string a_BGPath)
+:	m_pNextScene(NULL)
+,	m_pPreviousScene(NULL)
+,	m_pBackgroundImage(NULL)
+,	m_BGPath(a_BGPath)
 {
 	//
 }
@@ -92,7 +93,22 @@ void Scene::HideScene()
 	//ObjMgr::GetReference().ClearScene();
 }
 
-void Scene::SetBackgroundImage(sf::Sprite* pBGImage)
+void Scene::SetBackground(sf::Sprite* a_pBGImage)
 {
-	pBackgroundImage = pBGImage;
+	m_pBackgroundImage = a_pBGImage;
+}
+
+std::string Scene::GetBGPath()
+{
+	return m_BGPath;
+}
+
+void Scene::ProcKeyEvent(sf::Event::KeyEvent KeyEvent)
+{
+	//
+}
+
+sf::Sprite* Scene::GetBackground()
+{
+	return m_pBackgroundImage;
 }

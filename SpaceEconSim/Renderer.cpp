@@ -34,3 +34,8 @@ bool Renderer::CleanUp()
 	//
 	return true;
 }
+
+void Renderer::SetBackground( _In_ sf::Sprite* a_pBG )
+{
+	m_pBackgroundImage = a_pBG;
+}

@@ -20,7 +20,7 @@ bool ResourceManager::LoadSFMLImage( std::string FilePath, sf::Image** pOut )
 	//if sfml loads it from file, then we are good to go
 	if(image->loadFromFile(FilePath))
 	{
-		LoadedImages.push_back( std::pair<std::string, sf::Image*>(FilePath, image) );
+		Images.push_back( std::pair<std::string, sf::Image*>(FilePath, image) );
 		if(pOut)
 			*pOut = image;
 		return true;
@@ -30,45 +30,65 @@ bool ResourceManager::LoadSFMLImage( std::string FilePath, sf::Image** pOut )
 	return false;
 }
 
-bool ResourceManager::CreateSprite( std::string FilePath, sf::Sprite** pOut, _In_ sf::Rect<int>* a_pSubRect )
+bool ResourceManager::LoadSFMLTexture( std::string FilePath, sf::Texture** pOut )
 {
-	short imageIndex = 0;
-	//check to see if the image is already loaded
-	for(unsigned short n=0;n<LoadedImages.size();n++)
+	//create image
+	sf::Texture* texture = new sf::Texture();
+
+	//if sfml loads it from file, then we are good to go
+	if(texture->loadFromFile(FilePath))
 	{
-		if(!FilePath.compare(LoadedImages[n].first))
+		Textures.push_back( std::pair<std::string, sf::Texture*>(FilePath, texture) );
+		if(pOut)
+			*pOut = texture;
+		return true;
+	}
+
+	//could not load the image from file
+	return false;
+}
+
+bool ResourceManager::CreateSprite( std::string FilePath, sf::Sprite** a_ppOut )
+{
+	short textureIndex = 0;
+	//check to see if the texture is already loaded
+	for(unsigned short n=0;n<Textures.size();n++)
+	{
+		if(!FilePath.compare(Textures[n].first))
 		{
 			//found it
-			imageIndex = n;
+			textureIndex = n;
 			goto create_sprite;
 		}
 	}
-	LoadSFMLImage(FilePath);
+	LoadSFMLTexture(FilePath);
 	//check again to see if the image is loaded
-	for(unsigned short n=0;n<LoadedImages.size();n++)
+	for(unsigned short n=0;n<Textures.size();n++)
 	{
-		if(!FilePath.compare(LoadedImages[n].first))
+		if(!FilePath.compare(Textures[n].first))
 		{
 			//found it
-			imageIndex = n;
+			textureIndex = n;
 			goto create_sprite;
 		}
 	}
-	//if the code runs to here, then the image wasn't loaded
-	*pOut = NULL;
+	//if the code runs to here, then the texture wasn't loaded successfully
+	*a_ppOut = NULL;
 	return false;
 
 	create_sprite:
 	//if sfml creates the sprite, then we're good
-	sf::Sprite* sprite = new sf::Sprite(*LoadedImages[imageIndex].second);
-	if(a_pSubRect)
-		sprite->SetSubRect(*a_pSubRect);
-	sf::Vector2f size = sprite->GetSize();
-	if(pOut)
-		*pOut = sprite;
+	/*sf::Texture* texture = new sf::Texture();
+	texture->loadFromImage(*Images[imageIndex].second);*/
+	sf::Sprite* sprite = new sf::Sprite(*Textures[textureIndex].second);
+	/*if(a_pSubRect)
+		sprite->set(*a_pSubRect);*/
+	//sf::Vector2f size = texture->getSize();
+	if(a_ppOut)
+		*a_ppOut = sprite;
 
 	//now scale the sprite so that it matches the tile size
-	/*sf::Vector2f spriteSize = sprite->GetSize();
+	/*sf::Vector2f spriteSize = sprite->getSize();
 	sf::Vector2f tileSize = FileLoader::GetTileSize();
 	sf::Vector2f spriteScale;
 	spriteScale.x = tileSize.x / spriteSize.x;
@@ -76,12 +96,13 @@ bool ResourceManager::CreateSprite( std::string FilePath, sf::Sprite** pOut, _In
 	sprite->SetScale(spriteScale);*/
 
 	//reset the centrepos
-	spriteSize = sprite->GetSize();
-	sprite->SetCenter(size.x/2,size.y);
+	/*spriteSize = sprite->getSize();
+	sprite->SetCenter(size.x/2,size.y);*/
 
 	return true;
 }
 
+/*
 bool ResourceManager::CreateAnim(std::string FilePath, sf::Vector2f a_FrameSize, float FrameLength, short numFrames, _Out_ Anim** a_ppOut )
 {
 	sf::Sprite* pSpriteSheet = NULL;
@@ -118,3 +139,4 @@ bool ResourceManager::CreateAnim(std::string FilePath, sf::Vector2f a_FrameSize,
 		*a_ppOut = pNewAnim;
 	return true;
 }
+*/

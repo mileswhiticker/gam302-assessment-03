@@ -2,6 +2,7 @@
 #include "Renderer.hpp"
 #include "WindowManager.hpp"
 #include "ResourceManager.hpp"
+#include "SceneManager.hpp"
 
 #include <iostream>
 
@@ -9,6 +10,7 @@ App::App(Renderer& a_Renderer, WindowManager& a_WindowMgr)
 :	m_Renderer(a_Renderer)
 ,	m_WindowMgr(a_WindowMgr)
 ,	m_pResourceMgr(new ResourceManager())
+,	m_pSceneMgr(new SceneManager(*m_pResourceMgr, m_Renderer))
 	//
 ,	m_IsQuittingNextUpdate(false)
 ,	m_Initialized(false)
@@ -37,6 +39,9 @@ bool App::Update(float a_Dt)
 	//render everything
 	if(m_Renderer.Render(a_Dt))
 		quit = true;
+
+	//poll for window events
+	m_WindowMgr.HandleEvents();
 
 	//check if user has tried to close the application
 	if(m_WindowMgr.CheckQuitNextUpdate())

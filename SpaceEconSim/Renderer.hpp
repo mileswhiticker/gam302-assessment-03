@@ -35,7 +35,7 @@ public:
 	bool CleanUp();
 	//
 	void AddVisibleSprite( _In_ sf::Sprite* a_pSprite );
-	void SetBackgroundImage( _In_ sf::Sprite* a_pBG );
+	void SetBackground( _In_ sf::Sprite* a_pBG );
 	//
 	void AddButtons( std::vector<Button*> NewButtons );
 	void AddEntities( std::vector<Entity*> NewEntities );
