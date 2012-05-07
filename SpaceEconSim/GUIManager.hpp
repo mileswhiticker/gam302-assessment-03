@@ -20,16 +20,17 @@ class GUIManager
 {
 public:
 	GUIManager();
-	void RenderGui(sf::RenderWindow& a_RenderWindow, float a_Dt);
+	void RenderGui(sf::RenderWindow& a_RenderWindow);
 	void GUIManager::Update(float a_Dt);
 	void HandleEvent(sf::Event a_Event);
 	//
-	void CreateNewWindow(sf::Vector2f a_Scale1, sf::Vector2f a_Scale2);
+	void CreateNewWindow(sf::Vector2f a_Scale1 = sf::Vector2f(0.1f,0.1f), sf::Vector2f a_Scale2 = sf::Vector2f(0.2f,0.2f));
 	void AddWidget(sfg::SharedPtr<sfg::Widget> a_Widget);
+	sfg::WeakPtr<sfg::Desktop> GetDesktop();
 	//
 private:
 	sfg::SFGUI* m_psfgui;
-	sfg::Desktop m_Desktop;
+	sfg::SharedPtr<sfg::Desktop> m_pDesktop;
 	//
 };
 

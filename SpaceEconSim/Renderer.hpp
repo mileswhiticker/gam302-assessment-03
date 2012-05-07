@@ -28,6 +28,7 @@ public:
 	bool Init();
 	bool Render(float a_dt);
 	bool CleanUp();
+	sf::Vector2f GetWindowDim();
 	//
 	//void AddVisibleSprite( _In_ sf::Sprite* a_pSprite );
 	void SetBackground( _In_ sf::Sprite* a_pBG );

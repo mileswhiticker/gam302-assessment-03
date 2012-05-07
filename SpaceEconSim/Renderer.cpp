@@ -22,7 +22,7 @@ bool Renderer::Init()
 bool Renderer::Render(float a_dt)
 {
 	//sf::RenderTarget& renderTarget = m_WindowMgr.GetRenderTarget();
-	sf::RenderWindow& renderWindow = (sf::RenderWindow&)m_WindowMgr.GetRenderTarget();
+	sf::RenderWindow& renderWindow = m_WindowMgr.GetRenderWindow();
 	
 	//update the gui
 	m_guiMgr.Update(a_dt);
@@ -35,7 +35,7 @@ bool Renderer::Render(float a_dt)
 		renderWindow.draw(*m_pBackgroundImage);
 
 	//render the gui
-	m_guiMgr.RenderGui(renderWindow,a_dt);
+	m_guiMgr.RenderGui(renderWindow);
 
 	//display the screen
 	m_WindowMgr.Display(a_dt);
@@ -51,4 +51,9 @@ bool Renderer::CleanUp()
 void Renderer::SetBackground( _In_ sf::Sprite* a_pBG )
 {
 	m_pBackgroundImage = a_pBG;
+}
+
+sf::Vector2f Renderer::GetWindowDim()
+{
+	return m_WindowMgr.GetWindowDim();
 }

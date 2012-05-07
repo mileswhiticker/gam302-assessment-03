@@ -23,7 +23,7 @@ public:
 	}*/
 	//bool GetNextEvent(sf::Event& EventReceived);
 	sf::Vector2f GetWindowDim();
-	sf::RenderTarget& GetRenderTarget();
+	sf::RenderWindow& GetRenderWindow();
 	//
 	void PollEvents(GUIManager& a_GUIMgr);
 	bool Display(float a_Dt);

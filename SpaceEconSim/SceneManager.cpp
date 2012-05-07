@@ -23,6 +23,7 @@ SceneManager::SceneManager(GUIManager& a_GUIMgr, ResourceManager& a_ResMgr, Rend
 //
 ,	m_pCurScene(NULL)
 {
+	//sfg::WeakPtr<sfg::Desktop> pDesktop = m_GUIMgr.GetDesktop();
 	//--------------- main menu ---------------//
 
 	//scene
@@ -32,7 +33,23 @@ SceneManager::SceneManager(GUIManager& a_GUIMgr, ResourceManager& a_ResMgr, Rend
 	m_pScenes.back()->SetBackground(Backgrounds.back());
 
 	//widgets
-	sfg::Button::Ptr quit_button( sfg::Button::Create( "Quit" ) );
+	m_GUIMgr.CreateNewWindow();
+	//sfg::Window::Ptr window( sfg::Window::Create() );
+	//pDesktop->Add(window);
+	//sfg::Button::Ptr quit_button( sfg::Button::Create( "Quit" ) );
+	//pDesktop->Add(quit_button);
+	//quit_button->OnLeftClick.Connect( &DesktopExample::OnFrontClick, this );
+	
+	//scale bg to fit the screen
+	sf::FloatRect bgSize = Backgrounds.back()->getLocalBounds();
+	sf::Vector2f screenDim = m_Renderer.GetWindowDim();
+	float scalar = screenDim.x/bgSize.width;
+	if(scalar < screenDim.y/bgSize.height)
+		scalar = screenDim.y/bgSize.height;
+	Backgrounds.back()->setScale(scalar, scalar);
+	
+	//widgets
+	//sfg::Button::Ptr quit_button( sfg::Button::Create( "Quit" ) );
 	//quit_button->OnLeftClick.Connect( &DesktopExample::OnFrontClick, this );
 
 	//--------------- options menu ---------------//
@@ -45,6 +62,13 @@ SceneManager::SceneManager(GUIManager& a_GUIMgr, ResourceManager& a_ResMgr, Rend
 	Backgrounds.push_back(new sf::Sprite());
 	a_ResMgr.CreateSprite("media/starry[1280x853].bmp", &Backgrounds.back());
 	m_pScenes.back()->SetBackground(Backgrounds.back());
+
+	//scale bg to fit the screen
+	bgSize = Backgrounds.back()->getLocalBounds();
+	scalar = screenDim.x/bgSize.width;
+	if(scalar < screenDim.y/bgSize.height)
+		scalar = screenDim.y/bgSize.height;
+	Backgrounds.back()->setScale(scalar, scalar);
 
 	EnableSceneByID(SCENE_MAINMENU);
 	//m_GUIMgr.CreateNewWindow(sf::Vector2f(0.1f,0.1f), sf::Vector2f(0.2f,0.2f));

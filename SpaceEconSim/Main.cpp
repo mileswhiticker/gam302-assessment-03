@@ -42,8 +42,8 @@ int WINAPI WinMain(HINSTANCE a_hInst, HINSTANCE a_hPrevInst, LPSTR a_pCmdLine, i
 	RedirectIOToConsole();
 	srand((unsigned int)time(0));
 	//
-	GUIManager guiMgr;
 	WindowManager windowMgr;
+	GUIManager guiMgr;
 	Renderer renderer(guiMgr,windowMgr);
 
 	App app(windowMgr,guiMgr,renderer);

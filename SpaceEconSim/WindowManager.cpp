@@ -67,7 +67,7 @@ void WindowManager::PollEvents(GUIManager& a_GUIMgr)
 	}
 }
 
-sf::RenderTarget& WindowManager::GetRenderTarget()
+sf::RenderWindow& WindowManager::GetRenderWindow()
 {
 	return *m_pSFMLRenderWindow;
 }
