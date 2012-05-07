@@ -9,9 +9,13 @@
 #include "guicon.h"
 
 #include <SFML/System.hpp>
-#include "Renderer.hpp"
-#include "WindowManager.hpp"
+#include <SFGUI/SFGUI.hpp>
+
 #include "App.hpp"
+#include "ResourceManager.hpp"
+#include "GUIManager.hpp"
+#include "WindowManager.hpp"
+#include "Renderer.hpp"
 
 //don't use this, it's lazy
 //#pragma comment(lib, "requiredLibrary.lib") 
@@ -36,24 +40,24 @@ catch (CEGUI::Exception& e)
 int WINAPI WinMain(HINSTANCE a_hInst, HINSTANCE a_hPrevInst, LPSTR a_pCmdLine, int a_nCmdShow)
 {
 	RedirectIOToConsole();
-	//
 	srand((unsigned int)time(0));
 	//
+	GUIManager guiMgr;
 	WindowManager windowMgr;
-	Renderer renderer(windowMgr);
-	//
-	App app(renderer,windowMgr);
+	Renderer renderer(guiMgr,windowMgr);
+
+	App app(windowMgr,guiMgr,renderer);
 	//
 	sf::Clock deltaTimer;
-	while(true)
+	bool quit = false;
+	while(!quit)
 	{
-		if(app.Update(deltaTimer.getElapsedTime().asSeconds()))
+		float deltaT = deltaTimer.restart().asSeconds();
+		if(app.Update(deltaT))
 		{
 			app.CleanUp();
 			break;
 		}
-		//
-		deltaTimer.restart();
 	}
 
 	return 0;

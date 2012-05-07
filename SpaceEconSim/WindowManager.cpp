@@ -1,10 +1,13 @@
-#include "WindowManager.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 //#include <SFML/Window.hpp>
 //#include <SFML/System.hpp>
 
 #include <iostream>
-#include "Callbacks.hpp"
+
+#include "WindowManager.hpp"
+#include "GUIManager.hpp"
+
+//#include "Callbacks.hpp"
 
 using namespace sf;
 
@@ -12,18 +15,11 @@ WindowManager::WindowManager()
 :	m_pSFMLRenderWindow(new RenderWindow())
 ,	m_IsQuittingNextUpdate(false)
 {
-	//
-}
-
-bool WindowManager::Init()
-{
-	//sf::Window window;
-	//m_pSFMLRenderWindow->create(VideoMode(800,600),"Space Economy Sim");
 	m_pSFMLRenderWindow->create(sf::VideoMode(800,600),"Space Economy Sim");
 	sf::Image Icon;
 	if (Icon.loadFromFile("media/icon[617x480].bmp") && m_pSFMLRenderWindow)
 		m_pSFMLRenderWindow->setIcon(617, 480, Icon.getPixelsPtr());
-	return true;
+	m_pSFMLRenderWindow->resetGLStates();
 }
 
 bool WindowManager::CheckQuitNextUpdate()
@@ -35,19 +31,18 @@ bool WindowManager::Display(float a_Dt)
 {
 	//show next frame
 	m_pSFMLRenderWindow->display();
-
 	return true;
 }
 
-void WindowManager::HandleEvents()
+void WindowManager::PollEvents(GUIManager& a_GUIMgr)
 {
 	//poll for events
-	Event curEvent;
+	sf::Event curEvent;
 	while(m_pSFMLRenderWindow->pollEvent(curEvent))
 	{
 		switch(curEvent.type)
 		{
-		case(Event::MouseButtonPressed):
+		/*case(Event::MouseButtonPressed):
 			{
 				Callback::MouseClick(curEvent.mouseButton);
 				break;
@@ -56,10 +51,17 @@ void WindowManager::HandleEvents()
 			{
 				Callback::KeyPress(curEvent.key);
 				break;
-			}
+			}*/
 		case(Event::Closed):
 			{
 				m_IsQuittingNextUpdate = true;
+				break;
+			}
+		default:
+			{
+				//
+				a_GUIMgr.HandleEvent(curEvent);
+				break;
 			}
 		}
 	}

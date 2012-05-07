@@ -1,18 +1,17 @@
 #include "Scene.hpp"
-//#include "ObjectManager.hpp"
 #include "App.hpp"
 #include "Renderer.hpp"
+#include "GUIManager.hpp"
 
-//#include "Button.hpp"
-//#include "SpeechBubble.hpp"
+#include <SFGUI/SFGUI.hpp>
 
 #include <iostream>
 
-Scene::Scene(std::string a_BGPath)
+Scene::Scene(GUIManager& a_GUIMgr)
 :	m_pNextScene(NULL)
 ,	m_pPreviousScene(NULL)
 ,	m_pBackgroundImage(NULL)
-,	m_BGPath(a_BGPath)
+,	m_GUIMgr(a_GUIMgr)
 {
 	//
 }
@@ -96,11 +95,6 @@ void Scene::HideScene()
 void Scene::SetBackground(sf::Sprite* a_pBGImage)
 {
 	m_pBackgroundImage = a_pBGImage;
-}
-
-std::string Scene::GetBGPath()
-{
-	return m_BGPath;
 }
 
 void Scene::ProcKeyEvent(sf::Event::KeyEvent KeyEvent)

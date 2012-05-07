@@ -2,14 +2,30 @@
 #define SCENE_MANAGER_HPP
 
 #include <vector>
+
 class Scene;
 class Renderer;
 class ResourceManager;
+class GUIManager;
+
+#define MAIN_MENU
+#define OPTIONS_MENU
+#define APPLICATION
+
+namespace sf
+{
+	class Sprite;
+};
+
+namespace sfg
+{
+	class SFGUI;
+};
 
 class SceneManager
 {
 public:
-	SceneManager(ResourceManager& a_ResMgr, Renderer& a_Renderer);
+	SceneManager(GUIManager& a_GUIMgr, ResourceManager& a_ResMgr, Renderer& a_Renderer);
 	~SceneManager();
 	//
 	bool EnableSceneByID(unsigned short s_SceneID);
@@ -17,10 +33,11 @@ public:
 private:
 	std::vector<Scene*> m_pScenes;
 	Scene* m_pCurScene;
+	std::vector<sf::Sprite*> Backgrounds;
 	//
-	Renderer& m_Renderer;
 	ResourceManager& m_ResMgr;
-	//
+	GUIManager& m_GUIMgr;
+	Renderer& m_Renderer;
 };
 
 #endif	//SCENE_MANAGER_HPP

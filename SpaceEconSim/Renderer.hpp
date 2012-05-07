@@ -16,48 +16,45 @@ namespace sf
 	class RenderTarget;
 };
 
+class GUIManager;
 class Button;
 class Entity;
 class Anim;
-class SpeechBubble;
 
 class Renderer
 {
 public:
-	Renderer(WindowManager& a_WindowMgr);
-	/*static Renderer& GetReference()
-	{
-		static Renderer instance;
-		return instance;
-	}*/
+	Renderer(GUIManager& a_guiMgr, WindowManager& a_WindowMgr);
 	bool Init();
 	bool Render(float a_dt);
 	bool CleanUp();
 	//
-	void AddVisibleSprite( _In_ sf::Sprite* a_pSprite );
+	//void AddVisibleSprite( _In_ sf::Sprite* a_pSprite );
 	void SetBackground( _In_ sf::Sprite* a_pBG );
 	//
-	void AddButtons( std::vector<Button*> NewButtons );
-	void AddEntities( std::vector<Entity*> NewEntities );
-	void AddEntity( Entity* pNewEntity );
-	void AddSpeechBubble( SpeechBubble* pSpeechBubble );
-	void ClearSpeechBubble( SpeechBubble* pSpeechBubble );
+	//void AddButtons( std::vector<Button*> NewButtons );
+	//void AddEntities( std::vector<Entity*> NewEntities );
+	//void AddEntity( Entity* pNewEntity );
+	//void AddSpeechBubble( SpeechBubble* pSpeechBubble );
+	//void ClearSpeechBubble( SpeechBubble* pSpeechBubble );
 	//
-	void ClearButton( Button* a_pButton );
-	void ClearEntity( Entity* a_pEntity );
+	//void ClearButton( Button* a_pButton );
+	//void ClearEntity( Entity* a_pEntity );
 	//
-	void MouseClick( sf::Vector2f ClickPos );
+	//void MouseClick( sf::Vector2f ClickPos );
 	//
-	void RemoveAllVisible();
+	//void RemoveAllVisible();
 	//
 private:
 	WindowManager& m_WindowMgr;
 	//
 	sf::Sprite* m_pBackgroundImage;
 	//std::vector<sf::Sprite*> m_pVisibleSprites;
-	std::vector<SpeechBubble*> m_pSpeechBubbles;
-	std::vector<Button*> m_pVisibleButtons;
-	std::list<Entity*> m_pVisibleEntities;
+	//std::vector<SpeechBubble*> m_pSpeechBubbles;
+	//std::vector<Button*> m_pVisibleButtons;
+	//std::list<Entity*> m_pVisibleEntities;
+	//
+	GUIManager& m_guiMgr;
 };
 
 #endif // RENDERER_H

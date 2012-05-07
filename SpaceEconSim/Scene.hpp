@@ -10,15 +10,21 @@ namespace sf
 	class Sprite;
 };
 
+namespace sfg
+{
+	class SFGUI;
+};
+
 class Button;
 class Entity;
 class SpeechBubble;
 class Anim;
+class GUIManager;
 
 class Scene
 {
 public:
-	Scene(std::string a_BGPath = "media/starry[1280x853].bmp");
+	Scene(GUIManager& a_GUIMgr);
 	~Scene();
 	virtual void Update(float a_dt);
 	//
@@ -28,7 +34,6 @@ public:
 	//
 	void SetBackground( _In_ sf::Sprite* a_pBGImage );
 	sf::Sprite* GetBackground();
-	std::string GetBGPath();
 	std::vector<Button*> GetButtons();
 	virtual void ShowScene();
 	virtual void HideScene();
@@ -39,13 +44,13 @@ public:
 	Scene* m_pPreviousScene;
 protected:
 	sf::Sprite* m_pBackgroundImage;
-	std::string m_BGPath;
 	std::vector<sf::Sprite*> m_pMiscSprites;
 	std::vector<Anim*> m_pMiscAnims;
 	//
 	std::vector<Button*> Buttons;
 	std::vector<SpeechBubble*> SpeechBubbles;
 	//
+	GUIManager& m_GUIMgr;
 };
 
 #endif

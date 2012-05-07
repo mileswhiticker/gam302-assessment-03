@@ -10,11 +10,12 @@ namespace sf
 	class RenderTarget;
 }
 
+class GUIManager;
+
 class WindowManager
 {
 public:
 	WindowManager();
-	bool Init();
 	/*static WindowMgr& GetReference()
 	{
 		static WindowMgr instance;
@@ -24,7 +25,7 @@ public:
 	sf::Vector2f GetWindowDim();
 	sf::RenderTarget& GetRenderTarget();
 	//
-	void HandleEvents();
+	void PollEvents(GUIManager& a_GUIMgr);
 	bool Display(float a_Dt);
 	//
 	bool CheckQuitNextUpdate();
