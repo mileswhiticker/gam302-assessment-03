@@ -2,7 +2,7 @@
 #include "GameHelpers.hpp"
 
 Ship::Ship()
-:	Type(Ship::INVALID_SHIP)
+:	MyType(Ship::INVALID_SHIP)
 ,	Name(GetShipName())
 ,	MaintLevel(100)
 ,	MaintMax(100)
