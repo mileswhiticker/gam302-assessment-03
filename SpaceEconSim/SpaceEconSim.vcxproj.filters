@@ -43,6 +43,15 @@
     <Filter Include="Source Files\Game\GUI_DetailView">
       <UniqueIdentifier>{09a9533f-4d43-4763-bb4b-2578dbe048bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GUI_ListView">
+      <UniqueIdentifier>{072d766b-2a77-4375-bf10-478e97e9eaa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Listeners">
+      <UniqueIdentifier>{00a61bae-0919-4f25-afdd-c98bceaf0182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Listeners">
+      <UniqueIdentifier>{da2e7dc2-9742-496a-aeb5-4eef99c120a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GUIManager.cpp">
@@ -50,12 +59,6 @@
     </ClCompile>
     <ClCompile Include="WindowManager.cpp">
       <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Anim.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files\Managers</Filter>
@@ -123,9 +126,6 @@
     <ClCompile Include="GUI_SystemDetail.cpp">
       <Filter>Source Files\Game\GUI_DetailView</Filter>
     </ClCompile>
-    <ClCompile Include="GUI_PlanetDetail.cpp">
-      <Filter>Source Files\Game\GUI_DetailView</Filter>
-    </ClCompile>
     <ClCompile Include="GUI_CompanyDetail.cpp">
       <Filter>Source Files\Game\GUI_DetailView</Filter>
     </ClCompile>
@@ -135,15 +135,27 @@
     <ClCompile Include="GameHelpers.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="GUI_TraderList.cpp">
+      <Filter>Source Files\Game\GUI_ListView</Filter>
+    </ClCompile>
+    <ClCompile Include="Trader.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectListener.cpp">
+      <Filter>Source Files\Game\Listeners</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_SettlementDetail.cpp">
+      <Filter>Source Files\Game\GUI_DetailView</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_SettlementList.cpp">
+      <Filter>Source Files\Game\GUI_ListView</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_SystemList.cpp">
+      <Filter>Source Files\Game\GUI_ListView</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Anim.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Defs.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputHandler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GUIManager.hpp">
@@ -208,6 +220,9 @@
     </ClInclude>
     <ClInclude Include="GameHelpers.hpp">
       <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectListener.hpp">
+      <Filter>Header Files\Game\Listeners</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

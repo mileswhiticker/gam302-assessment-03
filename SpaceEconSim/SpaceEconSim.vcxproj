@@ -76,7 +76,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Anim.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AsteroidBelt.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -85,13 +84,15 @@
     <ClCompile Include="guicon.cpp" />
     <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="GUI_CompanyDetail.cpp" />
-    <ClCompile Include="GUI_PlanetDetail.cpp" />
+    <ClCompile Include="GUI_SettlementDetail.cpp" />
+    <ClCompile Include="GUI_SettlementList.cpp" />
     <ClCompile Include="GUI_SystemDetail.cpp" />
+    <ClCompile Include="GUI_SystemList.cpp" />
     <ClCompile Include="GUI_TraderDetail.cpp" />
+    <ClCompile Include="GUI_TraderList.cpp" />
     <ClCompile Include="HabitableObject.cpp" />
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Infrastructure.cpp" />
-    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="OptionsMenu.cpp" />
@@ -103,12 +104,13 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneTraversals.cpp" />
+    <ClCompile Include="SelectListener.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="StarSystem.cpp" />
+    <ClCompile Include="Trader.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Anim.hpp" />
     <ClInclude Include="App.hpp" />
     <ClInclude Include="AsteroidBelt.hpp" />
     <ClInclude Include="Defs.hpp" />
@@ -119,7 +121,6 @@
     <ClInclude Include="GUIManager.hpp" />
     <ClInclude Include="HabitableObject.hpp" />
     <ClInclude Include="Helpers.hpp" />
-    <ClInclude Include="InputHandler.hpp" />
     <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="OptionsMenu.hpp" />
     <ClInclude Include="Planet.hpp" />
@@ -128,6 +129,7 @@
     <ClInclude Include="Resources.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneManager.hpp" />
+    <ClInclude Include="SelectListener.hpp" />
     <ClInclude Include="Ship.hpp" />
     <ClInclude Include="StarSystem.hpp" />
     <ClInclude Include="Trader.hpp" />

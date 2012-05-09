@@ -86,7 +86,7 @@ void WindowManager::CleanUp()
 sf::Vector2f WindowManager::GetWindowDim()
 {
 	sf::Vector2f out;
-	out.y = (double)m_pSFMLRenderWindow->getSize().y;
-	out.x = (double)m_pSFMLRenderWindow->getSize().x;
+	out.y = (float)m_pSFMLRenderWindow->getSize().y;
+	out.x = (float)m_pSFMLRenderWindow->getSize().x;
 	return out;
 }
