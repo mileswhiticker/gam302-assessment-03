@@ -7,7 +7,7 @@
 
 void HabitableObject::ProduceRawMaterials(double a_TimePassed)
 {
-	double popFactor = 0.5f + m_CurPop / m_MaxSustainablePop;
+	double popFactor = 0.5f + m_CurPop / m_MaxPop;
 
 	//produce some raw materials
 	//amount produced is primarily affected by the development level
@@ -30,7 +30,7 @@ void HabitableObject::ProduceRawMaterials(double a_TimePassed)
 void HabitableObject::ProduceFinishedGoods(double a_TimePassed)
 {
 	//finished goods to be hardcoded for now, unfortunately :(
-	double popFactor = 0.5f + m_CurPop / m_MaxSustainablePop;
+	double popFactor = 0.5f + m_CurPop / m_MaxPop;
 	
 	//---------- metal ore > metal plates ----------//
 	if(ResourcePool[RESOURCE_METALORE] > 0)

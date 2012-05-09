@@ -3,8 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Rect.hpp>
 
-#include "Anim.hpp"
-
 #include <iostream>
 
 ResourceManager::ResourceManager()

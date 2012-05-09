@@ -1,22 +1,18 @@
 #include "Planet.hpp"
+#include "SelectListener.hpp"
 
 #include "Helpers.hpp"
+#include "GameHelpers.hpp"
 
 #define TERRESTRIAL_SPAWN_PROBABILITY 0.05f
 #define GASGIANT_SPAWN_PROBABILITY 0.3f
 
-Planet::Planet(Planet::Type a_PlanetType)
-:	HabitableObject()
+Planet::Planet(SelectListener* a_pSelectListener, Planet::Type a_PlanetType)
+:	HabitableObject(a_pSelectListener)
 ,	m_MyType(INVALID)
 {
-	//make random planet name
-	m_Name += GetRandomLetter();
-	m_Name += GetRandomLetter();
-	m_Name += GetRandomLetter();
-	m_Name += "-";
-	m_Name += rand()%10;
-	m_Name += rand()%10;
-	m_Name += rand()%10;
+	//get a random name
+	m_Name = GetPlanetName();
 
 	//setup unique planet stats
 	switch(a_PlanetType)
@@ -34,7 +30,7 @@ Planet::Planet(Planet::Type a_PlanetType)
 		}
 	case(TERRESTRIAL):
 		{
-			m_MyType = TERRESTRIAL;//
+			m_MyType = TERRESTRIAL;
 			ExploitableResources[RESOURCE_METALORE] = (double)(rand()%20) + (double)(rand()%200) / 100;
 			ExploitableQuality[RESOURCE_METALORE] = (double)(rand()%100);
 			ExploitableResources[RESOURCE_CRYSTALORE] = (double)(rand()%10) + (double)(rand()%100) / 100;
@@ -97,4 +93,10 @@ std::map<RESOURCE_TYPE, double> Planet::GetNextIndReq(double a_TimePassed)
 	std::map<RESOURCE_TYPE, double> reqs;
 	//
 	return reqs;
+}
+
+void Planet::SelectMe()
+{
+	if(pSelectListener)
+		pSelectListener->Fire(this, SelectListener::LISTENER_SETTLEMENT);
 }
