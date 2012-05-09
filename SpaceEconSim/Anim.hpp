@@ -13,9 +13,9 @@ namespace sf
 class Anim
 {
 public:
-	Anim( std::vector<sf::Sprite*> a_Frames, float a_FrameTime );
+	Anim( std::vector<sf::Sprite*> a_Frames, double a_FrameTime );
 	~Anim();
-	void Draw(float Dt);
+	void Draw(double Dt);
 	//
 	void PlayLoop();
 	void PlayOnce();
@@ -25,15 +25,15 @@ public:
 	void FlipTheX(bool a_Flipped);
 	//
 	void SetPosition(sf::Vector2f a_Pos);
-	void SetPosition(float x, float y);
+	void SetPosition(double x, double y);
 	sf::Vector2f GetPosition();
 	//
 	//void SetCenter(sf::Vector2f a_Pos);
-	//void SetCenter(float x, float y);
+	//void SetCenter(double x, double y);
 	//sf::Vector2f GetCenter();
 	//
 	void SetScale(sf::Vector2f a_Pos);
-	void SetScale(float x, float y);
+	void SetScale(double x, double y);
 	sf::Vector2f GetScale();
 	//
 	sf::Vector2f GetSize();
@@ -42,8 +42,8 @@ private:
 	bool Playing;
 	bool Looping;
 	int CurFrame;
-	float TimePerFrame;
-	float tAfterPreviousFrame;
+	double TimePerFrame;
+	double tAfterPreviousFrame;
 	//
 	bool Flipped;
 	//

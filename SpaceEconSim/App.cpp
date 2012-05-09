@@ -12,7 +12,7 @@ App::App(WindowManager& a_WindowMgr, GUIManager& a_GUIMgr, Renderer& a_Renderer)
 ,	m_WindowMgr(a_WindowMgr)
 ,	m_Renderer(a_Renderer)
 ,	m_pResourceMgr(new ResourceManager())
-,	m_pSceneMgr(new SceneManager(m_GUIMgr, *m_pResourceMgr, m_Renderer))
+,	m_pSceneMgr(new SceneManager(a_GUIMgr, *m_pResourceMgr, m_Renderer))
 	//
 ,	m_IsQuittingNextUpdate(false)
 {
@@ -31,8 +31,13 @@ bool App::Update(float a_Dt)
 	//poll for window events
 	m_WindowMgr.PollEvents(m_GUIMgr);
 
+	//update the current scene
+	m_pSceneMgr->Update(a_Dt);
+
 	//check if user has tried to close the application
 	if(m_WindowMgr.CheckQuitNextUpdate())
+		quit = true;
+	if(m_pSceneMgr->CheckQuitNextUpdate())
 		quit = true;
 
 	return quit;

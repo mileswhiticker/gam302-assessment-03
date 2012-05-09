@@ -103,7 +103,7 @@ bool ResourceManager::CreateSprite( std::string FilePath, sf::Sprite** a_ppOut )
 }
 
 /*
-bool ResourceManager::CreateAnim(std::string FilePath, sf::Vector2f a_FrameSize, float FrameLength, short numFrames, _Out_ Anim** a_ppOut )
+bool ResourceManager::CreateAnim(std::string FilePath, sf::Vector2f a_FrameSize, double FrameLength, short numFrames, _Out_ Anim** a_ppOut )
 {
 	sf::Sprite* pSpriteSheet = NULL;
 	if(!CreateSprite(FilePath, &pSpriteSheet))

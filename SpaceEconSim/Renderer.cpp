@@ -19,7 +19,7 @@ bool Renderer::Init()
 	return true;
 }
 
-bool Renderer::Render(float a_dt)
+bool Renderer::Render(double a_dt)
 {
 	//sf::RenderTarget& renderTarget = m_WindowMgr.GetRenderTarget();
 	sf::RenderWindow& renderWindow = m_WindowMgr.GetRenderWindow();

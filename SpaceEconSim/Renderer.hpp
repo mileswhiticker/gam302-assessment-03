@@ -26,7 +26,7 @@ class Renderer
 public:
 	Renderer(GUIManager& a_guiMgr, WindowManager& a_WindowMgr);
 	bool Init();
-	bool Render(float a_dt);
+	bool Render(double a_dt);
 	bool CleanUp();
 	sf::Vector2f GetWindowDim();
 	//

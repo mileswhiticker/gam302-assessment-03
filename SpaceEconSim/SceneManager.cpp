@@ -9,69 +9,69 @@
 #include "OptionsMenu.hpp"
 #include "GameInst.hpp"
 
-enum SceneInd
-{
-	SCENE_MAINMENU = 0,
-	SCENE_OPTIONSMENU,
-	SCENE_GAMEINST
-};
+#include <SFGUI/Label.hpp>
+#include <SFGUI/Button.hpp>
 
 SceneManager::SceneManager(GUIManager& a_GUIMgr, ResourceManager& a_ResMgr, Renderer& a_Renderer)
 :	m_ResMgr(a_ResMgr)
 ,	m_GUIMgr(a_GUIMgr)
 ,	m_Renderer(a_Renderer)
-//
-,	m_pCurScene(NULL)
+	//
+,	m_CurScene(INVALID_SCENE)
+,	m_pMainMenu(NULL)
+,	m_pOptionsMenu(NULL)
+,	m_pGameInst(NULL)
+	//
+,	m_IsQuittingNextUpdate(false)
 {
-	//sfg::WeakPtr<sfg::Desktop> pDesktop = m_GUIMgr.GetDesktop();
 	//--------------- main menu ---------------//
-
-	//scene
-	m_pScenes.push_back(new Scene(m_GUIMgr));
-	Backgrounds.push_back(new sf::Sprite());
-	a_ResMgr.CreateSprite("media/menubackground[1920x1080].jpg", &Backgrounds.back());
-	m_pScenes.back()->SetBackground(Backgrounds.back());
-
-	//widgets
-	m_GUIMgr.CreateNewWindow();
-	//sfg::Window::Ptr window( sfg::Window::Create() );
-	//pDesktop->Add(window);
-	//sfg::Button::Ptr quit_button( sfg::Button::Create( "Quit" ) );
-	//pDesktop->Add(quit_button);
-	//quit_button->OnLeftClick.Connect( &DesktopExample::OnFrontClick, this );
+	m_pMainMenu = new MainMenu(m_GUIMgr);
+	sf::Sprite* pBG = new sf::Sprite();
+	a_ResMgr.CreateSprite("media/menubackground[1920x1080].jpg", &pBG);
+	m_pMainMenu->SetBackground(pBG);
+	m_pMainMenu->m_pStartButton->OnLeftClick.Connect(&SceneManager::GotoGameScene, this);
+	m_pMainMenu->m_pOptionsButton->OnLeftClick.Connect(&SceneManager::GotoOptionsScene, this);
+	m_pMainMenu->m_pQuitButton->OnLeftClick.Connect(&SceneManager::Quit, this);
+	Scenes[SCENE_MAINMENU] = m_pMainMenu;
 	
 	//scale bg to fit the screen
-	sf::FloatRect bgSize = Backgrounds.back()->getLocalBounds();
-	sf::Vector2f screenDim = m_Renderer.GetWindowDim();
-	float scalar = screenDim.x/bgSize.width;
-	if(scalar < screenDim.y/bgSize.height)
-		scalar = screenDim.y/bgSize.height;
-	Backgrounds.back()->setScale(scalar, scalar);
-	
-	//widgets
-	//sfg::Button::Ptr quit_button( sfg::Button::Create( "Quit" ) );
-	//quit_button->OnLeftClick.Connect( &DesktopExample::OnFrontClick, this );
+	sf::Vector2f screenDim = m_GUIMgr.GetWindowDim();
+	sf::FloatRect bgSize;
+	float scalar;
+	if(pBG)
+	{
+		bgSize = pBG->getLocalBounds();
+		scalar = screenDim.x/bgSize.width;
+		if(scalar < screenDim.y/bgSize.height)
+			scalar = screenDim.y/bgSize.height;
+		pBG->setScale(scalar, scalar);
+	}
 
 	//--------------- options menu ---------------//
-	m_pScenes.push_back(new Scene(m_GUIMgr));
-	Backgrounds.push_back(new sf::Sprite());
-	m_pScenes.back()->SetBackground(Backgrounds.back());
+	m_pOptionsMenu = new OptionsMenu(m_GUIMgr);
+	m_pOptionsMenu->SetBackground(pBG);
+	Scenes[SCENE_OPTIONSMENU] = m_pOptionsMenu;
 
 	//--------------- application screen ---------------//
-	m_pScenes.push_back(new Scene(m_GUIMgr));
-	Backgrounds.push_back(new sf::Sprite());
-	a_ResMgr.CreateSprite("media/starry[1280x853].bmp", &Backgrounds.back());
-	m_pScenes.back()->SetBackground(Backgrounds.back());
+	m_pGameInst = new GameInst(m_GUIMgr);
+	pBG = new sf::Sprite();
+	a_ResMgr.CreateSprite("media/starry[1280x853].bmp", &pBG);
+	m_pGameInst->SetBackground(pBG);
+	m_pGameInst->m_pQuitMenuButton->OnLeftClick.Connect(&SceneManager::GotoMenuScene, this);
+	Scenes[SCENE_GAMEINST] = m_pGameInst;
 
 	//scale bg to fit the screen
-	bgSize = Backgrounds.back()->getLocalBounds();
-	scalar = screenDim.x/bgSize.width;
-	if(scalar < screenDim.y/bgSize.height)
-		scalar = screenDim.y/bgSize.height;
-	Backgrounds.back()->setScale(scalar, scalar);
+	if(pBG)
+	{
+		bgSize = pBG->getLocalBounds();
+		scalar = screenDim.x/bgSize.width;
+		if(scalar < screenDim.y/bgSize.height)
+			scalar = screenDim.y/bgSize.height;
+		pBG->setScale(scalar, scalar);
+	}
 
+	//set the main menu as the first scene
 	EnableSceneByID(SCENE_MAINMENU);
-	//m_GUIMgr.CreateNewWindow(sf::Vector2f(0.1f,0.1f), sf::Vector2f(0.2f,0.2f));
 }
 
 SceneManager::~SceneManager()
@@ -79,13 +79,29 @@ SceneManager::~SceneManager()
 	//
 }
 
-bool SceneManager::EnableSceneByID(unsigned short s_SceneID)
+bool SceneManager::EnableSceneByID(SCENE_TYPE a_SceneID)
 {
-	if(s_SceneID < m_pScenes.size())
+	if(m_CurScene)
 	{
-		m_pCurScene = m_pScenes[s_SceneID];
-		m_Renderer.SetBackground(m_pCurScene->GetBackground());
+		Scenes[m_CurScene]->HideScene();
+	}
+	if(a_SceneID)
+	{
+		m_CurScene = a_SceneID;
+		m_Renderer.SetBackground(Scenes[m_CurScene]->GetBackground());
+		Scenes[m_CurScene]->ShowScene();
 		return true;
 	}
 	return false;
+}
+
+bool SceneManager::CheckQuitNextUpdate()
+{
+	return m_IsQuittingNextUpdate;
+}
+
+void SceneManager::Update(float a_Dt)
+{
+	//this is just a shell to update the scene, and the only scene that needs updating is the game scene
+	Scenes[m_CurScene]->Update(a_Dt);
 }

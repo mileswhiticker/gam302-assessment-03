@@ -31,6 +31,18 @@
     <Filter Include="Header Files\Scenes">
       <UniqueIdentifier>{f6f05b5a-35eb-4bfd-8e35-8a9764371917}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{f2a71c2b-315f-4d7e-9d5e-cefc991a1681}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{b7e37ece-fbe9-4ee4-ab17-a43cba530fa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\HabitableObject">
+      <UniqueIdentifier>{10484e4d-dca1-4b02-ac0f-97c70cca5544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GUI_DetailView">
+      <UniqueIdentifier>{09a9533f-4d43-4763-bb4b-2578dbe048bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GUIManager.cpp">
@@ -39,13 +51,7 @@
     <ClCompile Include="WindowManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Anim.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Callbacks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputHandler.cpp">
@@ -78,15 +84,60 @@
     <ClCompile Include="OptionsMenu.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="SceneTraversals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Planet.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="StarSystem.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Helpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AsteroidBelt.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Infrastructure.cpp">
+      <Filter>Source Files\Game\HabitableObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Population.cpp">
+      <Filter>Source Files\Game\HabitableObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Production.cpp">
+      <Filter>Source Files\Game\HabitableObject</Filter>
+    </ClCompile>
+    <ClCompile Include="HabitableObject.cpp">
+      <Filter>Source Files\Game\HabitableObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_TraderDetail.cpp">
+      <Filter>Source Files\Game\GUI_DetailView</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_SystemDetail.cpp">
+      <Filter>Source Files\Game\GUI_DetailView</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_PlanetDetail.cpp">
+      <Filter>Source Files\Game\GUI_DetailView</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_CompanyDetail.cpp">
+      <Filter>Source Files\Game\GUI_DetailView</Filter>
+    </ClCompile>
+    <ClCompile Include="Ship.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameHelpers.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scene.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Anim.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Callbacks.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Defs.hpp">
@@ -124,6 +175,39 @@
     </ClInclude>
     <ClInclude Include="OptionsMenu.hpp">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.hpp">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.hpp">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="HabitableObject.hpp">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources.hpp">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Planet.hpp">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="StarSystem.hpp">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Helpers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AsteroidBelt.hpp">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Trader.hpp">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Ship.hpp">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHelpers.hpp">
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

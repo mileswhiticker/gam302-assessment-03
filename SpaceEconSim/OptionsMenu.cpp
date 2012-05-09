@@ -5,3 +5,13 @@ OptionsMenu::OptionsMenu(GUIManager& a_GUIMgr)
 {
 	//
 }
+
+void OptionsMenu::Update(float a_dt)
+{
+	//
+}
+
+void OptionsMenu::UpdateGUISizes()
+{
+	//
+}

@@ -42,11 +42,11 @@ int WINAPI WinMain(HINSTANCE a_hInst, HINSTANCE a_hPrevInst, LPSTR a_pCmdLine, i
 	RedirectIOToConsole();
 	srand((unsigned int)time(0));
 	//
-	WindowManager windowMgr;
-	GUIManager guiMgr;
-	Renderer renderer(guiMgr,windowMgr);
+	WindowManager* pWindowMgr = new WindowManager();
+	GUIManager* pGUIMgr = new GUIManager(*pWindowMgr);
+	Renderer renderer(*pGUIMgr,*pWindowMgr);
 
-	App app(windowMgr,guiMgr,renderer);
+	App app(*pWindowMgr,*pGUIMgr,renderer);
 	//
 	sf::Clock deltaTimer;
 	bool quit = false;

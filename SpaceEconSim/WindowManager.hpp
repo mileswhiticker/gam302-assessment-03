@@ -26,7 +26,7 @@ public:
 	sf::RenderWindow& GetRenderWindow();
 	//
 	void PollEvents(GUIManager& a_GUIMgr);
-	bool Display(float a_Dt);
+	bool Display(double a_Dt);
 	//
 	bool CheckQuitNextUpdate();
 	//

@@ -5,42 +5,63 @@
 
 MainMenu::MainMenu(GUIManager& a_GUIMgr)
 :	Scene(a_GUIMgr)
+	//
+,	m_Title(sfg::Label::Create("Space Economy Sim - by Miles Whiticker"))
+,	m_pStartButton(sfg::Button::Create("Start"))
+,	m_pOptionsButton(sfg::Button::Create("Options"))
+,	m_pQuitButton(sfg::Button::Create("Quit"))
 {
-	/*
-	// Create a new window.
-	sfg::Window::Ptr window( sfg::Window::Create() );
-	window->SetTitle( "new window" );
-
-	// Widgets.
-	sfg::Button::Ptr destroy_button( sfg::Button::Create( "Destroy" ) );
-	sfg::Button::Ptr front_button( sfg::Button::Create( "Main window to front" ) );
-
-	// Layout.
-	sfg::Box::Ptr box( sfg::Box::Create( sfg::Box::VERTICAL, 5.f ) );
-	box->Pack( sfg::Label::Create( "This is a newly created window, from runtime, interactively." ), false );
-	box->Pack( sfg::Label::Create( "You can move me around, try it!" ), false );
-	box->Pack( sfg::Label::Create( "Or click the button below to destroy me. :-(" ), false );
-	box->Pack( destroy_button, false );
-	box->Pack( front_button, false );
+	//setup gui
+	sf::Vector2f windowDim = m_GUIMgr.GetWindowDim();
+	sf::FloatRect allocRect;
+	float invHeightScalar = 10;
+	float invWidthScalar = 5;
 	
-	window->Add( box );
-	m_Desktop.Add( window );
-	m_Desktop.SetProperty( "Button#create_window > Label", "FontSize", 18.f );
+	//changing font size is slooooow :(
+	//title
+	//m_Title = new sfg::Button();
+	//sfg::Context::Get().GetEngine().SetProperty("Label", "FontSize", 100.0f);
+	m_Title->SetRequisition( sf::Vector2f(windowDim.x / invWidthScalar, windowDim.y / invHeightScalar) );
+	allocRect = m_Title->GetAllocation();
+	m_Title->SetPosition( sf::Vector2f(windowDim.x/2 - allocRect.width/2, windowDim.y/5 - allocRect.height/2) );
+	m_Title->Show(false);
+	m_GUIMgr.AddWidget(m_Title);
+	Widgets.push_back(m_Title);
 
-	// Signals.
-	destroy_button->OnLeftClick.Connect( &DesktopExample::OnDestroyWindowClick, this );
-	front_button->OnLeftClick.Connect( &DesktopExample::OnFrontClick, this );
-	*/
-	//sfg::Button::Ptr quit_button( sfg::Button::Create( "Quit" ) );
-	//a_GUIMgr.AddWidget(quit_button);
-	//a_GUIMgr.CreateNewWindow(sf::Vector2f(0.1f,0.1f), sf::Vector2f(0.2f,0.2f));
-	//a_GUIMgr.CreateNewWindow(sf::Vector2f(0.1f,0.1f), sf::Vector2f(0.2f,0.2f));
-	//a_GUIMgr.CreateNewWindow(sf::Vector2f(0.1f,0.1f), sf::Vector2f(0.2f,0.2f));
-
-	//exit button
+	//start button
+	//sfg::Context::Get().GetEngine().SetProperty("Button", "FontSize", 20.0f);
+	m_pStartButton->SetRequisition( sf::Vector2f(windowDim.x / invWidthScalar, windowDim.y / invHeightScalar) );
+	allocRect = m_pStartButton->GetAllocation();
+	m_pStartButton->SetPosition( sf::Vector2f(windowDim.x/4 - allocRect.width/2, 2*windowDim.y/5 - allocRect.height/2) );
+	m_pStartButton->Show(false);
+	m_GUIMgr.AddWidget(m_pStartButton);
+	Widgets.push_back(m_pStartButton);
+	
+	//options button
+	//sfg::Context::Get().GetEngine().SetProperty("Button", "FontSize", 20.0f);
+	m_pOptionsButton->SetRequisition( sf::Vector2f(windowDim.x / invWidthScalar, windowDim.y / invHeightScalar) );
+	allocRect = m_pOptionsButton->GetAllocation();
+	m_pOptionsButton->SetPosition( sf::Vector2f(windowDim.x/4 - allocRect.width/2, 3*windowDim.y/5 - allocRect.height/2) );
+	m_pOptionsButton->Show(false);
+	m_GUIMgr.AddWidget(m_pOptionsButton);
+	Widgets.push_back(m_pOptionsButton);
+	
+	//quit button
+	//sfg::Context::Get().GetEngine().SetProperty("Button", "FontSize", 20.0f);
+	m_pQuitButton->SetRequisition( sf::Vector2f(windowDim.x / invWidthScalar, windowDim.y / invHeightScalar) );
+	allocRect = m_pQuitButton->GetAllocation();
+	m_pQuitButton->SetPosition( sf::Vector2f(windowDim.x/4 - allocRect.width/2, 4*windowDim.y/5 - allocRect.height/2) );
+	m_pQuitButton->Show(false);
+	m_GUIMgr.AddWidget(m_pQuitButton);
+	Widgets.push_back(m_pQuitButton);
 }
 
-void MainMenu::Quit()
+void MainMenu::Update(float a_dt)
+{
+	//
+}
+
+void MainMenu::UpdateGUISizes()
 {
 	//
 }

@@ -7,7 +7,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 
 /*
-Anim::Anim( std::vector<sf::Sprite*> a_Frames, float a_TimePerFrame )
+Anim::Anim( std::vector<sf::Sprite*> a_Frames, double a_TimePerFrame )
 :	Frames(a_Frames)
 ,	TimePerFrame(a_TimePerFrame)
 ,	tAfterPreviousFrame(0)
@@ -48,7 +48,7 @@ Anim::Anim( std::vector<sf::Sprite*> a_Frames, float a_TimePerFrame )
 	}
 }
 
-void Anim::Draw(float Dt)
+void Anim::Draw(double Dt)
 {
 	if(Playing)
 	{
@@ -109,7 +109,7 @@ void Anim::SetPosition(sf::Vector2f a_Pos)
 	FramePosition = a_Pos;
 }
 
-void Anim::SetPosition(float x, float y)
+void Anim::SetPosition(double x, double y)
 {
 	SetPosition(sf::Vector2f(x,y));
 }
@@ -130,7 +130,7 @@ sf::Vector2f Anim::GetPosition()
 	FrameCentre = a_Pos;
 }*/
 
-/*void Anim::SetCenter(float x, float y)
+/*void Anim::SetCenter(double x, double y)
 {
 	SetCenter(sf::Vector2f(x,y));
 }*/
@@ -150,7 +150,7 @@ void Anim::SetScale(sf::Vector2f a_Pos)
 	}
 	FrameSize = Frames[0]->getSize();
 }
-void Anim::SetScale(float x, float y)
+void Anim::SetScale(double x, double y)
 {
 	SetScale(sf::Vector2f(x,y));
 }

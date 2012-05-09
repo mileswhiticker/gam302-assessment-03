@@ -23,7 +23,7 @@ public:
 	bool LoadSFMLImage(std::string FilePath, _Out_ sf::Image** Out = NULL );
 	bool LoadSFMLTexture(std::string FilePath, _Out_ sf::Texture** Out = NULL );
 	bool CreateSprite(std::string FilePath, _Out_ sf::Sprite** a_ppOut = NULL );	// _In_ sf::Rect<int>* a_pSubRect = NULL
-	bool CreateAnim(std::string FilePath, sf::Vector2f a_FrameSize, float FrameLength, short numFrames, _Out_ Anim** a_ppOut = NULL );
+	bool CreateAnim(std::string FilePath, sf::Vector2f a_FrameSize, double FrameLength, short numFrames, _Out_ Anim** a_ppOut = NULL );
 	//
 private:
 	//

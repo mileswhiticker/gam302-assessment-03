@@ -2,15 +2,16 @@
 #define SCENE_MANAGER_HPP
 
 #include <vector>
+#include <map>
 
+class MainMenu;
+class OptionsMenu;
+class GameInst;
 class Scene;
+
 class Renderer;
 class ResourceManager;
 class GUIManager;
-
-#define MAIN_MENU
-#define OPTIONS_MENU
-#define APPLICATION
 
 namespace sf
 {
@@ -22,22 +23,43 @@ namespace sfg
 	class SFGUI;
 };
 
+enum SCENE_TYPE
+{
+	INVALID_SCENE = 0,
+	SCENE_MAINMENU,
+	SCENE_OPTIONSMENU,
+	SCENE_GAMEINST
+};
+
 class SceneManager
 {
 public:
 	SceneManager(GUIManager& a_GUIMgr, ResourceManager& a_ResMgr, Renderer& a_Renderer);
 	~SceneManager();
 	//
-	bool EnableSceneByID(unsigned short s_SceneID);
+	bool EnableSceneByID(SCENE_TYPE a_SceneID);
+	void Update(float a_Dt);
+	bool CheckQuitNextUpdate();
 	//
 private:
-	std::vector<Scene*> m_pScenes;
-	Scene* m_pCurScene;
-	std::vector<sf::Sprite*> Backgrounds;
+	//
+	void GotoGameScene();
+	void GotoOptionsScene();
+	void Quit();
+	void GotoMenuScene();
+	//
+	bool m_IsQuittingNextUpdate;
+	//
+	std::map<SCENE_TYPE,Scene*> Scenes;
+	SCENE_TYPE m_CurScene;
+	MainMenu* m_pMainMenu;
+	OptionsMenu* m_pOptionsMenu;
+	GameInst* m_pGameInst;
 	//
 	ResourceManager& m_ResMgr;
 	GUIManager& m_GUIMgr;
 	Renderer& m_Renderer;
+	//
 };
 
 #endif	//SCENE_MANAGER_HPP
