@@ -1,8 +1,13 @@
 #include "HabitableObject.hpp"
+#include "StarSystem.hpp"
 #include "Helpers.hpp"
+#include "SelectListener.hpp"
+#include "Trader.hpp"
 
-HabitableObject::HabitableObject()
-:	m_MaxSustainablePop(0)
+#include <iostream>
+
+HabitableObject::HabitableObject(SelectListener* a_pSelectListener)
+:	m_MaxPop(0)
 ,	m_CurPop(0)
 ,	m_DevelopmentLevel(0)
 ,	m_IndustrialLevel(0)
@@ -12,7 +17,12 @@ HabitableObject::HabitableObject()
 ,	m_PopulationStarving(false)
 ,	m_IndustryStarving(false)
 ,	m_InfrastructureBonus(1)
+,	m_Money(0)
+,	MyType(INVALID_HAB)
+,	pSelectListener(a_pSelectListener)
 {
+	static int curID = 0;
+	SettlementUID = curID++;
 	for(int resType = 1; resType < END_RESOURCE; resType++)
 	{
 		ResourcePool[(RESOURCE_TYPE)resType] = 0.0f;
@@ -36,4 +46,26 @@ void HabitableObject::Update(double a_Dt, double a_TimeRate)
 		ProduceFinishedGoods(timePassed);
 		BuildInfrastructure(timePassed);
 	}
+
+	//update any traders here
+	for(unsigned short i=0;i<PlanetsideTraders.size();i++)
+	{
+		PlanetsideTraders[i]->Update(a_Dt, a_TimeRate);
+	}
+}
+
+void HabitableObject::SelectMe()
+{
+	if(pSelectListener)
+		pSelectListener->Fire(this, SelectListener::LISTENER_SETTLEMENT);
+}
+
+bool HabitableObject::IsInfrastructureStarving()
+{
+	return m_IndustryStarving;
+}
+
+bool HabitableObject::IsPopulationStarving()
+{
+	return m_PopulationStarving;
 }

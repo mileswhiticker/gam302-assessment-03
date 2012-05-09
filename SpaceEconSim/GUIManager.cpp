@@ -13,7 +13,7 @@ GUIManager::GUIManager(WindowManager& a_WindowMgr)
 	//
 }
 
-void GUIManager::Update(double a_Dt)
+void GUIManager::Update(float a_Dt)
 {
 	m_Desktop.Update(a_Dt);
 }

@@ -7,7 +7,7 @@
 
 void HabitableObject::BuildInfrastructure(double a_TimePassed)
 {
-	double popFactor = 0.5f + m_CurPop / m_MaxSustainablePop;
+	double popFactor = 0.5f + m_CurPop / m_MaxPop;
 	//infrastructure growth requires a small amount of plates, components and fuel
 	//if not enough resources are in place, it will decay slightly
 	//development requires less resources than industry to develop in a ratio of 2:1
