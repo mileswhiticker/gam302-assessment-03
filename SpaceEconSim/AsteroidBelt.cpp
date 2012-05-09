@@ -1,8 +1,11 @@
 #include "AsteroidBelt.hpp"
 
-AsteroidBelt::AsteroidBelt()
-:	HabitableObject()
+AsteroidBelt::AsteroidBelt(SelectListener* a_pSelectListener)
+:	HabitableObject(a_pSelectListener)
 {
+	//dont need a name, it's just a generic asteroid belt
+	m_Name = "Asteroid belt";
+	//
 	ExploitableResources[RESOURCE_METALORE] = (double)(rand()%15) + (double)(rand()%150) / 100;
 	ExploitableQuality[RESOURCE_METALORE] = (double)(rand()%100);
 	ExploitableResources[RESOURCE_CRYSTALORE] = (double)(rand()%5) + (double)(rand()%50) / 100;
