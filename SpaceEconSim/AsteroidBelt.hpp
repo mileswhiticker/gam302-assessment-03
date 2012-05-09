@@ -6,7 +6,7 @@
 class AsteroidBelt : HabitableObject
 {
 public:
-	AsteroidBelt();
+	AsteroidBelt(SelectListener* a_pSelectListener);
 	virtual void Update(double a_Dt, double a_TimeRate);
 	//
 	virtual std::map<RESOURCE_TYPE, double> GetNextDevReq(double a_TimePassed);

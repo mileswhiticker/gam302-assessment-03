@@ -21,7 +21,7 @@ class GUIManager
 public:
 	GUIManager(WindowManager& a_WindowMgr);
 	void RenderGui(sf::RenderWindow& a_RenderWindow);
-	void GUIManager::Update(double a_Dt);
+	void GUIManager::Update(float a_Dt);
 	void HandleEvent(sf::Event a_Event);
 	sf::Vector2f GetWindowDim();
 	//

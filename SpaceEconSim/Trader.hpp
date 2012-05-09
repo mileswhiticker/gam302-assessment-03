@@ -2,9 +2,14 @@
 #define TRADER_HPP
 
 #include "Ship.hpp"
+class SelectListener;
 
-struct Trader
+class Trader
 {
+public:
+	Trader(SelectListener* a_pSelectListener = NULL);
+	void Update(double a_Dt, double TimePassageRate);
+	//
 	std::string Name;
 	float Money;
 	int Decisiveness;
@@ -14,9 +19,16 @@ struct Trader
 	int Ambition;
 	int RiskTaker;
 	//
-	Ship Ship;
+	Ship MyShip;
+	int TraderUID;
 	int LocationUID;
 	int DestinationUID;
+	//
+	void SelectMe();
+	//
+private:
+	SelectListener* pSelectListener;
+	//
 };
 
 #endif	//TRADER_HPP

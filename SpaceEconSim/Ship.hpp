@@ -14,7 +14,7 @@ struct Ship
 		SHIP_FRIGATE,
 		SHIP_LINER
 	};
-	Type Type;
+	Type MyType;
 	std::string Name;
 	//
 	float MaintLevel;
